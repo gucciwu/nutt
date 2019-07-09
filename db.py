@@ -2,13 +2,7 @@ from sqlalchemy import create_engine
 from string import Template
 from sqlalchemy.orm import sessionmaker
 
-DB = {
-    'host': 'localhost',
-    'port': '3306',
-    'user': 'root',
-    'pwd': 'YourPassword',
-    'db_name': 'nutt'
-}
+from settings import DB
 
 
 def get_engine():
