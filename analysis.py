@@ -28,8 +28,8 @@ def get_file_info(file):
         if extension in SUPPORTED_FILE_TYPE:
             ret = File()
             ret.path = os.path.abspath(file)
-            ret.folder = '/'.join(file.split('/')[0: -1])
-            ret.name = file.split('/')[-1]
+            ret.folder = file.split('\\')[-2: -1][0]
+            ret.name = file.split('\\')[-1]
             ret.extension = extension
             ret.size = info.st_size
             ret.created_at = format_time(info.st_ctime)
@@ -52,10 +52,13 @@ def save_files(files):
     engine, session = get_session()
     # engine.execute(File.__table__.insert(), files)
     # session.bulk_insert_mappings(File, files)
+    count = 0
     for file in files:
+        count += 1
+        print("saving file %s/%s --- %s" % (count, len(files), file.name))
         session.add(file)
-        session.commit()
 
+    session.commit()
     session.close()
 
 

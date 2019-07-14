@@ -8,9 +8,9 @@ class File(Base):
     __tablename__ = 'file'
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    path = Column(String(200))
+    path = Column(String(500))
     folder = Column(String(100))
-    name = Column(String(50))
+    name = Column(String(200))
     extension = Column(String(20))
     size = Column(BigInteger)
     created_at = Column(String(14))
